@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>通用问题优化智能体</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Prompt Engineering Agent</p>
+        <h1>通用问题优化智能体</h1>
+        <p class="subtitle">输入一个原始问题，智能体会先优化问题，再基于优化后的 Prompt 求解，并生成包含完整过程的 PDF 报告。</p>
+      </div>
+      <div class="status-card">
+        <span class="dot"></span>
+        <span>阿里云百炼 qwen3.7-plus + Flask + PDF Report</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <section class="input-panel">
+        <label for="questionInput">原始问题</label>
+        <textarea id="questionInput" placeholder="例如：帮我写一篇关于人工智能的论文"></textarea>
+        <div class="actions">
+          <button id="optimizeBtn">优化问题</button>
+          <button id="solveBtn" class="secondary" disabled>基于 Prompt 求解</button>
+          <button id="pdfBtn" class="secondary" disabled>生成 PDF 文档</button>
+        </div>
+        <p id="message" class="message"></p>
+      </section>
+
+      <section id="resultPanel" class="result-panel hidden">
+        <div class="result-header">
+          <div>
+            <p class="eyebrow">Optimization Result</p>
+            <h2>智能体优化与求解结果</h2>
+          </div>
+          <a id="downloadLink" class="download-link hidden" href="#">下载 PDF</a>
+        </div>
+
+        <div class="result-grid">
+          <article class="result-item wide">
+            <h3>原始问题</h3>
+            <p id="originalQuestion"></p>
+          </article>
+          <article class="result-item">
+            <h3>问题类型</h3>
+            <p id="taskType"></p>
+          </article>
+          <article class="result-item">
+            <h3>输出格式建议</h3>
+            <p id="outputFormat"></p>
+          </article>
+          <article class="result-item wide">
+            <h3>原问题问题分析</h3>
+            <p id="problemAnalysis"></p>
+          </article>
+          <article class="result-item wide">
+            <h3>优化后的问题</h3>
+            <p id="optimizedQuestion"></p>
+          </article>
+          <article class="result-item wide prompt-box">
+            <div class="item-title-row">
+              <h3>最终 Prompt</h3>
+              <button id="copyBtn" class="small secondary">复制</button>
+            </div>
+            <pre id="finalPrompt"></pre>
+          </article>
+          <article class="result-item wide">
+            <h3>优化理由</h3>
+            <p id="optimizationReason"></p>
+          </article>
+          <article id="solutionProcessCard" class="result-item wide hidden">
+            <h3>基于优化 Prompt 的求解过程</h3>
+            <p id="solutionProcess"></p>
+          </article>
+          <article id="finalAnswerCard" class="result-item wide hidden">
+            <h3>最终答案</h3>
+            <p id="finalAnswer"></p>
+          </article>
+          <article id="verificationCard" class="result-item wide hidden">
+            <h3>自检与结果说明</h3>
+            <p id="verificationSummary"></p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Flask==3.0.3
+openai==1.86.0
+reportlab==4.2.2
+gunicorn==22.0.0
